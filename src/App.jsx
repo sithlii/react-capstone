@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faPlusMinus } from "@fortawesome/free-solid-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { CartProvider } from './components/core/CartContext'
 
 import Navbar from "./components/core/Navbar"
 import Home from './components/pages/Home'
@@ -14,9 +15,6 @@ import About from './components/pages/About'
 import Contact from './components/pages/Contact'
 import Cart from './components/pages/Cart'
 
-import { CartProvider } from './components/core/CartContext'
-
-import './App.css'
 import './styles/main.scss'
 
 function App() {

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useCart } from '../core/CartContext';
 
 export default function Cart() {
-  const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
+  const { cart, removeFromCart, updateQuantity, clearCart, cartCheckout } = useCart();
 
   const calculateTotal = () => {
     return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
@@ -75,7 +75,7 @@ export default function Cart() {
           <button className="clear-btn" onClick={clearCart}>
             Clear Cart
           </button>
-          <button className="checkout-btn">
+          <button className="checkout-btn" onClick={cartCheckout}>
             Proceed to Checkout
           </button>
         </div>

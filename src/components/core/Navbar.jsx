@@ -25,7 +25,7 @@ export default function Navbar() {
                     <NavLink to="/contact" activeClassName="active">Contact</NavLink>
 
                 </div>
-                <div className="nav-links">
+                <div className="nav-links cart">
                     <NavLink to="/cart" activeClassName="active">
                         <FontAwesomeIcon icon="fa-solid fa-cart-shopping" />
                         {cartCount > 0 && <span className="cart-count">{cartCount}</span>}

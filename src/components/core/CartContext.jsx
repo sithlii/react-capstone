@@ -8,11 +8,7 @@ export function CartProvider({children}) {
         const savedCart = localStorage.getItem('cart');
         return savedCart ? JSON.parse(savedCart) : [];
     });
-
-    useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart));
-    }, [cart]);
-
+    
     const addToCart = (product, quantity) => {
         setCart(prevCart => {
             const existingItem = prevCart.find(item => item.id === product.id);
@@ -24,7 +20,7 @@ export function CartProvider({children}) {
             return [...prevCart, {...product, quantity}];
         });
     };
-
+    
     const removeFromCart = (productId) => {
         setCart(prevCart => {
             const removedItem = prevCart.find(item => item.id === productId);
@@ -32,7 +28,7 @@ export function CartProvider({children}) {
             return prevCart.filter(item => item.id !== productId);
         });
     };
-
+    
     const updateQuantity = (productId, quantity) => {
         setCart(prevCart => {
             const updatedItem = prevCart.find(item => item.id === productId);
@@ -40,14 +36,23 @@ export function CartProvider({children}) {
             return prevCart.map(item => item.id === productId ? {...item, quantity}: item);
         });
     };
-
+    
     const clearCart = () => {
         setCart([]);
         toast.warning('Cart cleared');
     };
 
+    const cartCheckout = () => {
+        setCart([]);
+        toast.success('Checkout successful');
+    }
+    
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }, [cart]);
+    
     return (
-        <CartContext.Provider value = {{cart, addToCart, removeFromCart, updateQuantity, clearCart}}>
+        <CartContext.Provider value = {{cart, addToCart, removeFromCart, updateQuantity, clearCart, cartCheckout}}>
             {children}
         </CartContext.Provider>
     );

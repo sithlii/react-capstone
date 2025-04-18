@@ -1,0 +1,32 @@
+.slide-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    overflow-y: hidden;
+
+    h1, h2 {
+        margin-bottom: 1.5rem;
+        font-size: 2.5rem;
+    }
+
+    .content-section {
+        max-width: 800px;
+        margin: 0 auto;
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+    }
+} 

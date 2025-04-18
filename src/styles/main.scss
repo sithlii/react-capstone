@@ -1,3 +1,10 @@
+@use '../styles/App.scss';
+
 @use '../styles/pages/product-detail';
 @use '../styles/pages/products';
 @use '../styles/pages/cart';
+@use '../styles/pages/contact';
+@use '../styles/pages/about';
+
+@use '../styles/components/swiper-carousel';
+@use '../styles/components/product-card';
