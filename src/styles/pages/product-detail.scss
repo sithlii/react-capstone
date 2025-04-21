@@ -46,6 +46,17 @@
       gap: 0.5rem;
       color: #666;
     }
+    .quantity-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      color: #666;
+      
+      button {
+        cursor: pointer;
+      }
+    }
   }
   .add-to-cart-btn {
     padding: 1rem 2rem;

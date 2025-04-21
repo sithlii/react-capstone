@@ -14,6 +14,7 @@ import ProductDetails from './components/pages/ProductDetails'
 import About from './components/pages/About'
 import Contact from './components/pages/Contact'
 import Cart from './components/pages/Cart'
+import NotFound from './components/pages/NotFound'
 
 import './styles/main.scss'
 
@@ -27,13 +28,14 @@ function App() {
           <Navbar />
           <main className="main-content">
             <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/shop" component={Products} />
-            <Route path="/products/:id" component={ProductDetails} />
-            <Route path="/about" component={About} />
-            <Route path="/contact" component={Contact} />
-            <Route path="/cart" component={Cart} />
-          </Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/shop" component={Products} />
+              <Route path="/products/:id" component={ProductDetails} />
+              <Route path="/about" component={About} />
+              <Route path="/contact" component={Contact} />
+              <Route path="/cart" component={Cart} />
+              <Route component={NotFound} />
+            </Switch>
           </main>
         </BrowserRouter>
       </CartProvider>

@@ -1,5 +1,6 @@
 #root {
     max-width: 1440px;
+    min-width: 500px;
     margin: 0 auto;
     padding: 0;
     text-align: center;
@@ -16,6 +17,8 @@
     padding: 1rem;
     border-radius: 0 0 10px 10px;
     z-index: 100;
+    position: sticky;
+    top: 0;
 
     &-container {
         display: flex;
@@ -101,4 +104,103 @@
     padding: 2rem;
     color: #e53e3e;
     font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.75rem;
+        
+        &-container {
+            padding: 0 1rem;
+        }
+    }
+
+    .shop-logo {
+        padding: 2px 4px;
+        
+        &-icon {
+            font-size: 1.75rem;
+            width: 25px;
+            height: 25px;
+        }
+
+        .shop-name p {
+            font-size: 0.9rem;
+        }
+    }
+
+    .nav-links {
+        gap: 0.75rem;
+        font-size: 1.25rem;
+
+        a {
+            padding: 0.4rem 0.75rem;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        padding: 0.5rem;
+        
+        &-container {
+            padding: 0 0.75rem;
+        }
+    }
+
+    .shop-logo {
+        padding: 1px 3px;
+        
+        &-icon {
+            font-size: 1.5rem;
+            width: 20px;
+            height: 20px;
+        }
+
+        .shop-name p {
+            font-size: 0.8rem;
+        }
+    }
+
+    .nav-links {
+        gap: 0.5rem;
+        font-size: 1.1rem;
+
+        a {
+            padding: 0.3rem 0.5rem;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .navbar {
+        padding: 0.4rem;
+        
+        &-container {
+            padding: 0 0.5rem;
+        }
+    }
+
+    .shop-logo {
+        padding: 1px 2px;
+        
+        &-icon {
+            font-size: 1.25rem;
+            width: 18px;
+            height: 18px;
+        }
+
+        .shop-name p {
+            font-size: 0.75rem;
+        }
+    }
+
+    .nav-links {
+        gap: 0.4rem;
+        font-size: 1rem;
+
+        a {
+            padding: 0.25rem 0.4rem;
+        }
+    }
 } 

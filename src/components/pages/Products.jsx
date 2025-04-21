@@ -10,23 +10,6 @@ export default function Products() {
   const [productType, setProductType] = useState('null');
   const [sortOrder, setSortOrder] = useState('null');
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch('https://fakestoreapi.com/products');
-        const data = await response.json();
-        setProducts(data);
-        const uniqueCategories = [...new Set(data.map(product => product.category))];
-        setCategories(uniqueCategories);       
-        setLoading(false);
-      } catch (err) {
-        setError(err);
-        setLoading(false);
-      }
-    };
-    fetchProducts();
-  }, []);
-
   const handleCategoryChange = (category) => {
     setSelectedCategories(prev => {
       if (prev.includes(category)) {
@@ -54,13 +37,30 @@ export default function Products() {
       if (sortOrder === 'desc') return b.id - a.id;
     });
 
+    useEffect(() => {
+      const fetchProducts = async () => {
+        try {
+          const response = await fetch('https://fakestoreapi.com/products');
+          const data = await response.json();
+          setProducts(data);
+          const uniqueCategories = [...new Set(data.map(product => product.category))];
+          setCategories(uniqueCategories);       
+          setLoading(false);
+        } catch (err) {
+          setError(err);
+          setLoading(false);
+        }
+      };
+      fetchProducts();
+    }, []);
+
   if (loading) return <div className="loading">Loading...</div>;
   if (error) return <div className="error">Error: {error.message}</div>;
+
 
   return (
     <div className="page-container">
       <div className="header">
-        <h1>Products</h1>
         <div className="filters-container">
           <div className="filter-group">
             <label htmlFor="productType">Product Type:</label>

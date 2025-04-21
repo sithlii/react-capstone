@@ -22,21 +22,22 @@
     
     .form-row {
       display: flex;
-      gap: .5rem;
+      gap: 2rem;
       margin-bottom: 1rem;
       
       @media (max-width: 600px) {
         flex-direction: column;
-        gap: 0;
+        gap: 1rem;
       }
     }
     
     .form-group {
       flex: 1;
+      min-width: 0;
       margin-bottom: 1rem;
       
       label {
-        display: block;
+        display: flex;
         margin-bottom: 0.5rem;
         color: #333;
         font-weight: 500;
@@ -49,6 +50,7 @@
         border: 1px solid #ddd;
         border-radius: 4px;
         font-size: 1rem;
+        font-family: 'DMSans', sans-serif;
         transition: border-color 0.2s;
         
         &:focus {

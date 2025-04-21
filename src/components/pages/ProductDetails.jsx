@@ -23,6 +23,7 @@ export default function ProductDetails() {
 
   const handleAddToCart = () => {
     addToCart(product, quantity);
+    setQuantity(1);
   };
 
   useEffect(() => {

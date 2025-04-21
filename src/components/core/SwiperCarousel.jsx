@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectFade, Autoplay, Pagination, Mousewheel } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
-import '../../styles/components/swiper-carousel.scss';
 
 const SwiperCarousel = ({ slides, className = '' }) => {
     const [activeSlide, setActiveSlide] = useState(0);
+    const swiperRef = useRef(null);
+    const videoRefs = useRef([]);
  
     const handleSlideChange = (swiper) => {
         setActiveSlide(swiper.activeIndex);
@@ -31,20 +32,43 @@ const SwiperCarousel = ({ slides, className = '' }) => {
             if (video) {
                 video.currentTime = 0;
                 video.play().catch(error => {
-                    console.error('Error playing video:', error);
+                    if (error.name !== 'AbortError') {
+                        console.error('Error playing video:', error);
+                    }
                 });
             }
         }
     };
 
     useEffect(() => {
-        const videos = document.querySelectorAll('video');
-        videos.forEach(video => video.pause());
+        const firstSlide = document.querySelector('.swiper-slide');
+        if (firstSlide) {
+            const video = firstSlide.querySelector('video');
+            if (video) {
+                video.play().catch(error => {
+                    if (error.name !== 'AbortError') {
+                        console.error('Error playing video:', error);
+                    }
+                });
+            }
+        }
+
+        videoRefs.current = document.querySelectorAll('video');
+        return () => {
+            videoRefs.current.forEach(video => {
+                if (video) {
+                    video.pause();
+                    video.removeAttribute('src');
+                    video.load();
+                }
+            });
+        };
     }, []);
 
     return (
         <div className={`swiper-carousel ${className}`}>
             <Swiper
+                ref={swiperRef}
                 direction="vertical"
                 effect="creative"
                 creativeEffect={{
@@ -75,13 +99,17 @@ const SwiperCarousel = ({ slides, className = '' }) => {
                     <SwiperSlide key={index} className="swiper-slide">
                         {slide.type === 'video' ? (
                             <video
-                                autoPlay={index === activeSlide}
+                                autoPlay
                                 muted
                                 loop
                                 playsInline
                                 preload="auto"
                                 className="media-content"
-                                onError={(e) => console.error('Video error:', e.target.error)}
+                                onError={(e) => {
+                                    if (e.target.error && e.target.error.name !== 'AbortError') {
+                                        console.error('Video error:', e.target.error);
+                                    }
+                                }}
                             >
                                 <source src={slide.src} type={slide.videoType || 'video/mp4'} />
                                 Your browser does not support the video tag.
